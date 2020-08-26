@@ -41,6 +41,9 @@ const Waiter = () => {
     let acum = 0;
     const newOrder = { ...order };
     newOrder.products.map((p) => acum += p.price * p.quantity);
+    // const newItem = newOrder.products.map((p) => acum += p.price * p.quantity);
+    // newItem.total = (newItem.total ? newItem.total : 2);
+    // setOrder(newOrder);
     return acum;
   };
 

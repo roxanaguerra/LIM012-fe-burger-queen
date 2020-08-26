@@ -17,13 +17,14 @@ const ChiefChef = () => {
     });
   }, []);
 
+  orders.map((order) => console.log(order.arrayOrder.products));
   return (
     <>
       <Header name="JEFE DE COCINA" history={history} />
       <NavigationBar />
       {
         orders.map((order) => (
-          <OrderCard key={order.id} getOrder={order.arrayOrder.client} />
+          <OrderCard key={order.id} getOrder={order.arrayOrder} />
         ))
       }
     </>
