@@ -6,25 +6,25 @@ import OrderCard from '../components/OrderCard';
 import firestore from '../controller/firestore';
 
 const ChiefChef = () => {
-  const [orders, getOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
     // getOrderFirestore();
-    firestore.getOrder((item) => {
-      getOrders(item);
-      console.log('item: ', item);
+    firestore.getOrder((orderList) => {
+      setOrders(orderList);
+      console.log('orderList: ', orderList);
     });
   }, []);
 
-  orders.map((order) => console.log(order.arrayOrder.products));
+  // orders.map((order) => console.log(order.arrayOrder.products));
   return (
     <>
       <Header name="JEFE DE COCINA" history={history} />
       <NavigationBar />
       {
         orders.map((order) => (
-          <OrderCard key={order.id} getOrder={order.arrayOrder} />
+          <OrderCard key={order.id} getOrder={order} />
         ))
       }
     </>

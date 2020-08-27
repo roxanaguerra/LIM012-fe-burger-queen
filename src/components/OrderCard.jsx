@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrderCard = (props) =>
+const OrderCard = (order) =>
   // console.log('tipe date: ', typeof props.getOrder.date);
   (
     <div className="status">
@@ -10,13 +10,13 @@ const OrderCard = (props) =>
       </p>
       <p className="">
         <span>Cliente: </span>
-        <span className="info">{props.getOrder.client} </span>
+        <span className="info">{order.client} </span>
         <span>N° de Mesa: </span>
-        <span className="info">{props.getOrder.table}</span>
+        <span className="info">{order.table}</span>
       </p>
       <p className="">
         <span>Hora de Pedido: </span>
-        <span className="info">{props.getOrder.date}</span>
+        <span className="info">{new Date(order.date).toLocaleString('es-PE')}</span>
       </p>
       <p>
         <span>Tiempo Transcurrido: </span>
@@ -32,18 +32,18 @@ const OrderCard = (props) =>
         </thead>
         <tbody>
           {
-              props.getOrder.products.map((p) => (
-                <tr>
-                  <td>{p.quantity}</td>
-                  <td>{p.productName}</td>
-                  <td>{p.price.toFixed(2)}</td>
+              order.products.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.quantity}</td>
+                  <td>{item.productName}</td>
+                  <td>{item.price.toFixed(2)}</td>
                 </tr>
               ))
           }
         </tbody>
       </table>
       <p className="tot">
-        TOTAL = S/. {props.getOrder.total}
+        TOTAL = S/. {order.total}
       </p>
       <button type="button">
         LISTO!

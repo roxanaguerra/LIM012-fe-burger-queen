@@ -1,11 +1,11 @@
 import firebase from './main';
 
 // COLECCION EN FIRESTORE - ADD ORDER
-const collectionOrder = () => firebase.firestore().collection('addOrder');
+const collectionOrder = () => firebase.firestore().collection('Orders');
 
 // AGREGAR DOCS A LA COLECCION
-const addOrder = (arrayOrder) => {
-  collectionOrder().add({ arrayOrder })
+const addOrder = (order) => {
+  collectionOrder().add(order)
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id);
     })
@@ -14,6 +14,7 @@ const addOrder = (arrayOrder) => {
     });
 };
 
+// .orderBy('arrayOrder.date', 'desc')
 // LEER LOS DOCS DE LA COLECCION
 const getOrder = (callback) => {
   collectionOrder().onSnapshot((query) => {
@@ -21,7 +22,7 @@ const getOrder = (callback) => {
     query.forEach((order) => {
       docs.push({ ...order.data(), id: order.id });
     });
-    // console.log(docs);
+    console.log(docs);
     callback(docs);
   });
 };

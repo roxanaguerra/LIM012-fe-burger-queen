@@ -16,7 +16,7 @@ const Waiter = () => {
     products: [],
     total: '',
     description: '',
-    date: new Date().toLocaleString(),
+    date: new Date().toISOString(),
     state: 'pendiente',
   };
   const [order, setOrder] = useState(initialStateOrder);
@@ -65,6 +65,7 @@ const Waiter = () => {
       product.quantity = 1;
       newOrder.products.push(product);
     }
+    newOrder.total = total();
     setOrder(newOrder);
   };
 
