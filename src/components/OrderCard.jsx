@@ -1,8 +1,7 @@
 import React from 'react';
 
-const OrderCard = (order) =>
-  // console.log('tipe date: ', typeof props.getOrder.date);
-  (
+const OrderCard = ({order}) => {
+  return (
     <div className="status">
       <p className="">
         <span>Nº Pedido: </span>
@@ -15,10 +14,8 @@ const OrderCard = (order) =>
         <span className="info">{order.table}</span>
       </p>
       <p className="">
-        <span>Hora de Pedido: </span>
+        <span>Fecha de Pedido: </span>
         <span className="info">{new Date(order.date).toLocaleString('es-PE')}</span>
-      </p>
-      <p>
         <span>Tiempo Transcurrido: </span>
         <span className="info">03 min</span>
       </p>
@@ -31,19 +28,17 @@ const OrderCard = (order) =>
           </tr>
         </thead>
         <tbody>
-          {
-              order.products.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.quantity}</td>
-                  <td>{item.productName}</td>
-                  <td>{item.price.toFixed(2)}</td>
-                </tr>
-              ))
-          }
+          {order.products.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.productName}</td>
+              <td>{item.price}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <p className="tot">
-        TOTAL = S/. {order.total}
+        TOTAL = S/.{order.total}
       </p>
       <button type="button">
         LISTO!

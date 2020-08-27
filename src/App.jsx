@@ -5,6 +5,7 @@ import {
 import Welcome from './view/Welcome';
 import ChiefChef from './view/ChiefChef';
 import Waiter from './view/Waiter';
+import Error from './view/Error';
 import './sass/index.scss';
 
 const App = () => (
@@ -16,13 +17,7 @@ const App = () => (
           <Waiter />
         </Route>
         <Route path="/jefecocina" component={ChiefChef} />
-        <Route component={() => (
-          <div className="ed-grid">
-            <h1>error 404</h1>
-            <span> pagina no encontrada</span>
-          </div>
-        )}
-        />
+        <Route component={Error} />
       </Switch>
     </HashRouter>
   </Router>

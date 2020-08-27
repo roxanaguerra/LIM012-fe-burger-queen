@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const MainButton = ({ name, reference, classbtn, history }) => (
+const MainButton = ({ name, reference, classbtn }) => (
   <div>
-    <button className={classbtn} type="button" onClick={()=> history.push(reference)}>
-        {name} </button>
+    <Link to={reference}>
+      <button className={classbtn} type="button">
+        {name}
+      </button>
+    </Link>
   </div>
 );
 export default MainButton;
