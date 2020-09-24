@@ -2,7 +2,8 @@ import React from 'react';
 import ProductList from './ProductList';
 
 // eslint-disable-next-line max-len
-const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleIncrementItem, handleDecreacetItem, total, deleteAproduct}) => {
+const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleIncrementItem, 
+  handleDecreacetItem, total, deleteAproduct}) => {
   return (
     <div className="add-order">
       <div className="order-header">
@@ -35,7 +36,8 @@ const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleInc
           </tr>
         </thead>
         <tbody>
-          <ProductList products={order.products} handleIncrementItem={handleIncrementItem} handleDecreacetItem={handleDecreacetItem} deleteAproduct={deleteAproduct} />
+          <ProductList products={order.products} handleIncrementItem={handleIncrementItem} 
+            handleDecreacetItem={handleDecreacetItem} deleteAproduct={deleteAproduct} />
         </tbody>
       </table>
       <div className="total">
