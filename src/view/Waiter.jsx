@@ -24,7 +24,7 @@ const Waiter = () => {
   const handleIncrementItem = (productId) => {
     const newOrder = { ...order };
     const newItem = newOrder.products.find((element) => element.id === productId);
-    newItem.quantity = (newItem.quantity ? newItem.quantity + 1 : 2);
+    newItem.quantity = (newItem.quantity ? newItem.quantity + 1 : 1);
     setOrder(newOrder);
   };
 
@@ -77,6 +77,7 @@ const Waiter = () => {
     setOrder({ ...order, [name]: value });
   };
 
+  // ENVIAR A COCINA Y AGREGAR A FIRESTORE
   const handleClick = (e) => {
     e.preventDefault();
     addOrderFirestore(order);
@@ -95,7 +96,10 @@ const Waiter = () => {
       <MainButton classbtn="btn btn-header" name="Estados de Pedido" reference="/mozo" />
       <div className="body-waiter">
         <div className="grid-left">
-          <AddOrder addOrderFirestore={addOrderFirestore} order={order} handleInputChange={handleInputChange} handleClick={handleClick} handleClear={handleClear} handleIncrementItem={handleIncrementItem} handleDecreacetItem={handleDecreacetItem} total={total} deleteAproduct={deleteAproduct} />
+        {/* addOrderFirestore={addOrderFirestore} */}
+          <AddOrder order={order} handleInputChange={handleInputChange}
+           handleClick={handleClick} handleClear={handleClear} handleIncrementItem={handleIncrementItem}
+            handleDecreacetItem={handleDecreacetItem} total={total} deleteAproduct={deleteAproduct} />
         </div>
         <div className="grid-right">
           <div className="content-groups">
