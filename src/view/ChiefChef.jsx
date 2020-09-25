@@ -6,9 +6,11 @@ import firestore from '../controller/firestore';
 
 const ChiefChef = () => {
   const [orders, setOrders] = useState([]);
+  // const [stateOrder, setStateOrder] = useState('pendiente');
+  
 
   useEffect(() => {
-    // getOrderFirestore();
+    // console.log('state: ', stateOrder);
     firestore.getOrder((orderList) => {
       setOrders(orderList);
       console.log('orders: ', orderList);
