@@ -14,7 +14,7 @@ const addOrder = (order) => {
     });
 };
 
-// .orderBy('arrayOrder.date', 'desc')
+// .orderBy('date', 'desc')
 // LEER LOS DOCS DE LA COLECCION
 const getOrder = (callback) => {
   collectionOrder().onSnapshot((query) => {
@@ -22,7 +22,7 @@ const getOrder = (callback) => {
     query.forEach((order) => {
       docs.push({ ...order.data(), id: order.id });
     });
-    console.log(docs);
+    // console.log(docs);
     callback(docs);
   });
 };
