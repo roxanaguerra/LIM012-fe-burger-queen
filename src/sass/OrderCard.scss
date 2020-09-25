@@ -3,7 +3,7 @@
 .status {
     display: inline-flex;
     margin: 10px;
-    width: 45%;
+    width: 47%;
     flex-direction: column;
     color: white;
     background: $colorOrderCard;
@@ -13,11 +13,23 @@
     p{
       margin: 0 10px;
       width: fit-content;
-      padding: 5px;   
-      .info {
+      padding: 2px;   
+      .info, th {
         color: #B67120;
         // font-weight: 500;        
       }
+    }
+
+    .tableDataOrder {
+      // margin-top: $font-button;
+      // margin-bottom: $font-button*2;
+      .info {
+        color: #B67120;
+        // width: 2px;
+      }
+      .small {
+        width: 2px;
+      }      
     }
     
     button {
