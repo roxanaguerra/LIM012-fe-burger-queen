@@ -20,10 +20,13 @@ const Waiter = () => {
   };
   const [order, setOrder] = useState(initialStateOrder);
   const [group, setGroup] = useState('Desayuno');
+  const [confirmationSend, setConfirmationSend] = useState(false);
 
   const handleIncrementItem = (productId) => {
+    console.log(productId);
     const newOrder = { ...order };
     const newItem = newOrder.products.find((element) => element.id === productId);
+    console.log('find: ', newItem);
     newItem.quantity = (newItem.quantity ? newItem.quantity + 1 : 1);
     setOrder(newOrder);
   };
@@ -31,9 +34,22 @@ const Waiter = () => {
   const handleDecreacetItem = (productId) => {
     const newOrder = { ...order };
     const newItem = newOrder.products.find((element) => element.id === productId);
-    newItem.quantity = (newItem.quantity ? newItem.quantity - 1 : 2);
+    newItem.quantity = (newItem.quantity ? newItem.quantity - 1 : 1);
     setOrder(newOrder);
   };
+
+  // const precio = (productId) => {
+  //   const newOrder = {...order};
+  //   const newItem = newOrder.products.find((element) => element.id === productId);
+  //   let precioTotal = newItem.price * newItem.quantity;
+  //   // if (itemIndex >= 0) {
+  //   //   newOrder.products[itemIndex].price = product.price * newOrder.products[itemIndex].quantity;
+  //   // } else {
+  //   //   newOrder.products.price = product.price;
+  //   //   // newOrder.products.push(product);
+  //   // }
+  //   return precioTotal;
+  // };
 
   const total = () => { 
     let acum = 0;
@@ -55,14 +71,18 @@ const Waiter = () => {
   };
 
   const addAproduct = (product) => {
+    console.log('product Add: ', product);
     const newOrder = { ...order };
     const itemIndex = newOrder.products.findIndex((element) => element.id === product.id);
+    console.log('itemIndex: ', itemIndex);
     if (itemIndex >= 0) {
       newOrder.products[itemIndex].quantity += 1;
+      
     } else {
       product.quantity = 1;
       newOrder.products.push(product);
-    }
+    }   
+    // newOrder.products[itemIndex].price = product.precio * ; 
     newOrder.total = total();
     setOrder(newOrder);
   };
@@ -80,7 +100,12 @@ const Waiter = () => {
   // ENVIAR A COCINA Y AGREGAR A FIRESTORE
   const handleClick = (e) => {
     e.preventDefault();
+    // console.log(order);
     addOrderFirestore(order);
+    setConfirmationSend(true);
+    setTimeout(() => {
+      setConfirmationSend(false)
+    },3000);
     setOrder({ ...initialStateOrder });
   };
 
@@ -99,7 +124,7 @@ const Waiter = () => {
         {/* addOrderFirestore={addOrderFirestore} */}
           <AddOrder order={order} handleInputChange={handleInputChange}
            handleClick={handleClick} handleClear={handleClear} handleIncrementItem={handleIncrementItem}
-            handleDecreacetItem={handleDecreacetItem} total={total} deleteAproduct={deleteAproduct} />
+            handleDecreacetItem={handleDecreacetItem}  total={total} deleteAproduct={deleteAproduct} confirmation={confirmationSend}/>
         </div>
         <div className="grid-right">
           <div className="content-groups">

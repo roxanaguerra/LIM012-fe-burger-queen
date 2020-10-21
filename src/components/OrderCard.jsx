@@ -1,6 +1,7 @@
 import React from 'react';
 
-const OrderCard = ({order}) => {
+const OrderCard = ({order, handleSendToWaiter }) => {
+
   return (
     <div className="status">
       <p>
@@ -43,7 +44,7 @@ const OrderCard = ({order}) => {
       <p className="tot">
         TOTAL = S/.{order.total}
       </p>
-      <button type="button">
+      <button className="" type="button" onClick={ (e) =>{ e.preventDefault(); handleSendToWaiter(order.id , 'listo')}}>
         LISTO!
       </button>
     </div>

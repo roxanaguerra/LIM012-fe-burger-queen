@@ -16,18 +16,23 @@ const addOrder = (order) => {
 
 // .orderBy('date', 'desc')
 // LEER LOS DOCS DE LA COLECCION
-const getOrder = (callback) => {
-  collectionOrder().onSnapshot((query) => {
+const getOrder = (stateOrder, callback) => {
+  collectionOrder().where('state', '==', stateOrder).onSnapshot((query) => {
     const docs = [];
     query.forEach((order) => {
       docs.push({ ...order.data(), id: order.id });
     });
-    // console.log(docs);
+    console.log(docs);
     callback(docs);
   });
 };
 
+// ACTUALIZAR EL ESTADO DEL PEDIDO
+const updateState = (id, state) => collectionOrder().doc(id).update({state});
+
+
 export default {
   addOrder,
   getOrder,
+  updateState,
 };

@@ -3,7 +3,8 @@ import ProductList from './ProductList';
 
 // eslint-disable-next-line max-len
 const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleIncrementItem, 
-  handleDecreacetItem, total, deleteAproduct}) => {
+  handleDecreacetItem, total, deleteAproduct, confirmation}) => {
+  
   return (
     <div className="add-order">
       <div className="order-header">
@@ -37,7 +38,7 @@ const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleInc
         </thead>
         <tbody>
           <ProductList products={order.products} handleIncrementItem={handleIncrementItem} 
-            handleDecreacetItem={handleDecreacetItem} deleteAproduct={deleteAproduct} />
+            handleDecreacetItem={handleDecreacetItem}  deleteAproduct={deleteAproduct} />
         </tbody>
       </table>
       <div className="total">
@@ -53,7 +54,14 @@ const AddOrder = ({order, handleInputChange, handleClick, handleClear, handleInc
           name="description"
           value={order.description}
         />
-      </div>
+      </div>      
+      {
+        confirmation ? 
+          <div className="confirmation">
+            Pedido Enviado a Cocina
+          </div>
+                    : null
+      }
       <div>
         <button className="btn btn-order" type="button" onClick={handleClick}>Enviar a cocina</button>
         <button className="btn btn-order" type="button" onClick={handleClear}>Cancelar pedido</button>

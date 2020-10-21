@@ -16,6 +16,9 @@ const App = () => (
         <Route path="/mozo">
           <Waiter />
         </Route>
+        {/* <Route path="/mozo/orders">
+          <WaiterOrders />
+        </Route> */}
         <Route path="/jefecocina" component={ChiefChef} />
         <Route component={Error} />
       </Switch>
